@@ -1,7 +1,7 @@
-const SW_VERSION = "de48ca1+ 2026-11-22 20:57Z";
+const SW_VERSION = "3428219 2026-11-22 22:30Z";
 const PRECACHE = [
-  "assets/index-CDlTq4Xx.js",
   "assets/index-Cj5qnViR.css",
+  "assets/index-DZJ8koB0.js",
   "icon-180.png",
   "icon-192.png",
   "icon-512.png",
