@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Whiteboard" />
+    <meta name="theme-color" content="#e9ecf1" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="icon-180.png" />
+    <link rel="icon" href="icon-192.png" />
+    <title>Whiteboard — прототип</title>
+    <script type="module" crossorigin src="./assets/index-DY-V3pgs.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BrWRV5CI.css">
+  </head>
+  <body>
+    <!-- Work area: the only element that receives pen/touch input. No input fields anywhere (Scribble). -->
+    <div id="work">
+      <canvas id="main"></canvas>
+      <canvas id="active"></canvas>
+    </div>
+
+    <nav id="crumbs" class="hidden"></nav>
+    <button id="exit" class="hidden">Выйти из фокуса</button>
+    <div id="penbar" class="hidden"></div>
+    <div id="pagebar" class="hidden"></div>
+    <div id="selbar" class="hidden"></div>
+    <div id="lassobar" class="hidden"></div>
+    <canvas id="minimap" class="hidden"></canvas>
+    <div id="hint">Загрузка…</div>
+    <div id="toast" class="hidden"></div>
+
+    <button id="diag-toggle" title="Диагностика">⚙</button>
+    <div id="diag" class="hidden">
+      <pre id="diag-text"></pre>
+      <div class="row">
+        <button id="check-save">Проверить сохранение</button>
+        <button id="clear-data">Очистить данные</button>
+      </div>
+      <div class="row">
+        <button id="test-page">Открыть тестовую страницу К-5</button>
+      </div>
+      <div class="row">
+        <button id="export-page">Выгрузить .wbpage</button>
+        <button id="import-page">Загрузить .wbpage</button>
+      </div>
+      <pre id="check-result"></pre>
+    </div>
+
+  </body>
+</html>
