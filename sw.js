@@ -1,12 +1,16 @@
-const SW_VERSION = "b42fa9d+ 2026-11-27 20:24Z";
+const SW_VERSION = "6bc0a70+ 2026-11-27 22:15Z";
 const PRECACHE = [
-  "assets/index-CeR6_nSe.js",
-  "assets/index-DUxh7l_3.css",
+  "assets/main-DjitoQ0t.css",
+  "assets/main-P_OCgjaZ.js",
+  "assets/relayClient-D2hFuI3c.js",
+  "assets/view-C93PcqK6.js",
+  "assets/view-m6ZcacPm.css",
   "icon-180.png",
   "icon-192.png",
   "icon-512.png",
   "index.html",
-  "manifest.webmanifest"
+  "manifest.webmanifest",
+  "view.html"
 ];
 
 // Service Worker of the app shell (Р-4.4, М-20). Plain script, not bundled: the build
@@ -37,6 +41,8 @@ const PRECACHE = [
 const CACHE_PREFIX = 'whiteboard-shell-';
 const CACHE = CACHE_PREFIX + SW_VERSION;
 const INDEX_URL = new URL('index.html', self.registration.scope).href;
+/** The page of viewers of a push presentation (step 9.3): next to the app, but not the app. */
+const VIEWER_PATH = new URL('view.html', self.registration.scope).pathname;
 // ignoreVary: servers answer with e.g. `Vary: Origin`; a module script (crossorigin,
 // with an Origin header) would then never match the precached response, and the app
 // would not start offline. The shell files do not depend on request headers.
@@ -147,6 +153,8 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin || !req.url.startsWith(self.registration.scope)) return;
   if (req.mode === 'navigate') {
+    // The page of viewers is not the app and needs the network anyway: it goes to the network as it is, never replaced by the shell.
+    if (url.pathname === VIEWER_PATH) return;
     // Any page of the app opens the cached shell: works offline and on a cold start.
     event.respondWith(shellResponse(req));
     return;
